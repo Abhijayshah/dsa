@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>DSA Supreme Batch - Course Content</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .section {
+            margin-bottom: 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .section:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .section-header {
+            background: linear-gradient(to right, #f8f9fa, #e9ecef);
+            padding: 18px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+            transition: all 0.3s ease;
+        }
+
+        .section-header:hover {
+            background: linear-gradient(to right, #e9ecef, #dee2e6);
+        }
+
+        .section-header.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+
+        .section-number {
+            background: white;
+            color: #667eea;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        .section-header.active .section-number {
+            background: rgba(255,255,255,0.2);
+            color: white;
+        }
+
+        .arrow {
+            transition: transform 0.3s ease;
+            font-size: 1.2em;
+        }
+
+        .arrow.active {
+            transform: rotate(180deg);
+        }
+
+        .section-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            background: #fafafa;
+        }
+
+        .section-content.active {
+            /* fallback max height; JS will set explicit heights for animation */
+            max-height: 2000px;
+        }
+
+        .content-inner {
+            padding: 20px 25px;
+        }
+
+        .lecture-item {
+            padding: 12px 15px;
+            margin: 8px 0;
+            background: white;
+            border-left: 4px solid #667eea;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .lecture-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .lecture-badge {
+            background: #667eea;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+
+        .lecture-badge.debug {
+            background: #f59e0b;
+        }
+
+        .lecture-badge.mega {
+            background: #10b981;
+        }
+
+        .key-topics {
+            margin-top: 15px;
+            padding: 15px;
+            background: white;
+            border-radius: 6px;
+            border-left: 4px solid #10b981;
+        }
+
+        .key-topics h4 {
+            color: #10b981;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .key-topics ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .key-topics li {
+            padding: 5px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .key-topics li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #10b981;
+            font-weight: bold;
+        }
+
+        .legend {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .progress-bar {
+            background: #e9ecef;
+            height: 8px;
+            border-radius: 10px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            background: linear-gradient(to right, #667eea, #764ba2);
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        /* Table of Contents navigation */
+        .toc-nav {
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin: 0 30px 20px 30px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 16px;
+        }
+
+        .toc-nav a {
+            color: #333;
+            text-decoration: none;
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            padding: 6px 10px;
+            border-radius: 14px;
+            font-size: 0.9em;
+        }
+
+        .toc-nav a:hover {
+            background: #e9ecef;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .content {
+                padding: 15px;
+            }
+
+            .section-title {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎓 DSA Supreme Batch</h1>
+            <p>Master Data Structures & Algorithms</p>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressBar"></div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="legend">
+                <div class="legend-item">
+                    <span class="lecture-badge">L</span>
+                    <span>Lecture</span>
+                </div>
+                <div class="legend-item">
+                    <span class="lecture-badge debug">DS</span>
+                    <span>Debug Session</span>
+                </div>
+                <div class="legend-item">
+                    <span class="lecture-badge mega">MS</span>
+                    <span>Mega Session</span>
+                </div>
+            </div>
+
+            <nav class="toc-nav" aria-label="Quick navigation">
+                <a href="#intro">Introduction</a>
+                <a href="#basics">Basics of Programming</a>
+                <a href="#patterns">Pattern Printing</a>
+                <a href="#arrays">Arrays</a>
+                <a href="#sns">Searching & Sorting</a>
+                <a href="#strings">Strings</a>
+                <a href="#pointers">Maths & Pointers</a>
+                <a href="#recursion">Recursion</a>
+                <a href="#backtracking">Backtracking</a>
+                <a href="#stacks">Stacks</a>
+                <a href="#queues">Queues</a>
+                <a href="#trees">Trees</a>
+                <a href="#bst">Binary Search Trees</a>
+                <a href="#heaps">Heaps</a>
+                <a href="#tries">Tries</a>
+                <a href="#dp">Dynamic Programming</a>
+                <a href="#graphs">Graphs</a>
+                <a href="#misc">Miscellaneous</a>
+            </nav>
+
+            <!-- Section 1: Introduction -->
+            <div class="section" id="intro">
+                <div class="section-header" onclick="toggleSection(this)" aria-expanded="false">
+                    <div class="section-title">
+                        <span class="section-number">1</span>
+                        <span>Introduction to Data Structures & Algorithms [Supreme Batch]</span>
+                    </div>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="section-content" aria-hidden="true">
+                    <div class="content-inner">
+                        <div class="lecture-item">
+                            <span class="lecture-badge">L</span>
+                            <span>Welcome to DSA - RED</span>
+                        </div>
+                        <div class="lecture-item">
+                            <span class="lecture-badge">L</span>
+                            <span><a href="#" rel="noopener noreferrer">Go to RED Dashboard</a></span>
+                        </div>
+                        <div class="lecture-item">
+                            <span class="lecture-badge">L</span>
+                            <span>Orientation Class Rescheduled</span>
+                        </div>
+                        <div class="lecture-item">
+                            <span class="lecture-badge">L</span>
+                            <span><a href="#" rel="noopener noreferrer">More Information here</a></span>
+                        </div>
+                        <div class="lecture-item">
+                            <span class="lecture-badge mega">MS</span>
+                            <span>Orientation Session - 31st March</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 2: Basics of Programming -->
+            <div class="section" id="basics">
+                <div class="section-header" onclick="toggleSection(this)" aria-expanded="false">
+                    <div class="section-title">
+                        <span class="section-number">2</span>
+                        <span>Basics of Programming - Language + Maths [Live Lectures]</span>
+                    </div>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="section-content" aria-hidden="true">
+                    <div class="content-inner">
+                        <div class="lecture-item"><span class="lecture-badge">L1</span><span>L1 - Basics of Programming</span></div>
+                        <div class="lecture-item"><span class="lecture-badge">L2</span><span>L2 - Basics of Programming</span></div>
+                        <div class="lecture-item"><span class="lecture-badge">L3</span><span>L3 - Basics of Programming</span></div>
+                        <div class="lecture-item"><span class="lecture-badge debug">DS</span><span>DC - Basics of Programming</span></div>
+                        <div class="lecture-item"><span class="lecture-badge mega">MS</span><span>MS - Basics of Programming</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 3: Pattern Printing -->
+            <div class="section" id="patterns">
+                <div class="section-header" onclick="toggleSection(this)" aria-expanded="false">
+                    <div class="section-title">
+                        <span class="section-number">3</span>
+                        <span>Pattern Printing [Live Lectures]</span>
+                    </div>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="section-content" aria-hidden="true">
+                    <div class="content-inner">
+                        <div class="lecture-item"><span class="lecture-badge">L1</span><span>L1 - Pattern Printing</span></div>
+                        <div class="lecture-item"><span class="lecture-badge">L2</span><span>L2 - Pattern Printing</span></div>
+                        <div class="lecture-item"><span class="lecture-badge">L3</span><span>L3 - Pattern Printing</span></div>
+                        <div class="lecture-item"><span class="lecture-badge debug">DS</span><span>DS - Pattern Printing</span></div>
+                        <div class="lecture-item"><span class="lecture-badge mega">MS</span><span>MS - Pattern Printing</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 4: Arrays -->
+            <div class="section" id="arrays">
+                <div class="section-header" onclick="toggleSection(this)" aria-expanded="false">
+                    <div class="section-title">
+                        <span class="section-number">4</span>
+                        <span>Arrays [Live Lectures]</span>
+                    </div>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="section-content" aria-hidden="true">
+                    <div class="content-inner">
+                        <div class="lecture-item"><span class="lecture-badge">L1</span><span>L1 - Basic Maths Problems</span></div>
+                        <div class="lecture-item"><span class="lecture-badge">L1</span><span>L1 - Arrays</span></div>
+                        <div class="lecture-item"><span class="lecture-badge debug">DS</span><span>DS - Maths + Array Basics</span></div>
+                        <div class="lecture-item"><span class="lecture-badge mega">MS</span><span>MS - Maths Basics</span></div>
+                        <div class="lecture-item"><span class="lecture-badge">L2</span><span>L2 - Arrays</span></div>
+                        <div class="lecture-item"><span class="lecture-badge">L3</span><span>L3 - Arrays</span></div>
+                        <div class="lecture-item"><span class="lecture-badge">L4</span><span>L4 - Arrays</span></div>
+                        <div class="lecture-item"><span class="lecture-badge debug">DS</span><span>DS - Arrays</span></div>
+                        <div class="lecture-item"><span class="lecture-badge mega">MS</span><span>MS - Arrays</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 5: Searching & Sorting -->
+            <div class="section" id="sns">
+                <div class="section-header" onclick="toggleSection(this)" aria-expanded="false">
+                    <div class="section-title">
+                        <span class="section-number">5</span>
+                        <span>Searching & Sorting [Live Lectures]</span>
+                    </div>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="section-content" aria-hidden="true">
+                    <div class="content-inner">
+                        <div class="lecture-item"><span class="lecture-badge">L1</span><span>L1 - Binary Search</span></div>
+                        <div class="lecture-item"><span class="lecture-badge">L2</span><span>L2 - Binary Search</span></div>
+                        <div class="lecture-item"><span class="lecture-badge">L3</span><span>L3 - Binary Search</span></div>
+                        <div class="lecture-item"><span class="lecture-badge debug">DS</span><span>DS - Searching & Sorting</span></div>
+                        <div class="lecture-item"><span class="lecture-badge mega">MS</span><span>MS - SnS</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 6: Strings -->
+            <div class="section" id="strings">
+                <div class="section-header" onclick="toggleSection(this)" aria-expanded="false">
+                    <div class="section-title">
+                        <span class="section-number">6</span>
+                        <span>Strings [Live Lectures]</span>
+                    </div>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="section-content" aria-hidden="true">
+                    <div class="content-inner">
+                        <div class="lecture-item"><span class="lecture-badge">L1</span><span>L1 - Strings</span></div>
+                        <div class="lecture-item"><span class="lecture-badge">L2</span><span>L2 - Strings</span></div>
+                        <div class="lecture-item"><span class="lecture-badge">L3</span><span>L3 - Strings</span></div>
+                        <div class="lecture-item"><span class="lecture-badge debug">DS</span><span>DS - Strings</span></div>
+                        <div class="lecture-item"><span class="lecture-badge mega">MS</span><span>MS - Strings</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 7: Needed Maths & Pointers -->
+            <div class="section" id="pointers">
+                <div class="section-header" onclick="toggleSection(this)" aria-expanded="false">
+                    <div class="section-title">
+                        <span class="section-number">7</span>
+                        <span>Needed Maths & Pointers [Live Lectures]</span>
+                    </div>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="section-content" aria-hidden="true">
+                    <div class="content-inner">
+                        <div class="lecture-item"><span class="lecture-badge">L1</span><span>L1 - Pointers</span></div>
+                        <div class="lecture-item"><span class="lecture-badge">L2</span><span>L2 - Pointers</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 8: Recursion -->
+            <div class="section" id="recursion">
+                <div class="section-header" onclick="toggleSection(this)" aria-expanded="false">
+                    <div class="section-title">
+                        <span class="section-number">8</span>
+                        <span>Recursion [Live Lectures]</span>
+                    </div>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="section-content" aria-hidden="true">
+                    <div class="content-inner">
+                        <div class="lecture-item"><span class="lecture-badge">L1</span><span>L1 - Recursion</span></div>
+                        <div class="lecture-item"><span class="lecture-badge">L2</span><span>L2 - Recursion</span></div>
+                        <div class="lecture-item"><span class="lecture-badge">L3</span><span>L3 - Recursion</span></div>
+                        <div class="lecture-item"><span class="lecture-badge debug">DS</span><span>DS - Recursion</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 9: Backtracking -->
+            <div class="section" id="backtracking">
+                <div class="section-header" onclick="toggleSection(this)" aria-expanded="false">
+                    <div class="section-title">
+                        <span class="section-number">9</span>
+                        <span>Backtracking [Live Lectures]</span>
+                    </div>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="section-content" aria-hidden="true">
+                    <div class="content-inner">
+                        <div class="lecture-item"><span class="lecture-badge">L1</span><span>L1 - BT and DnC</span></div>
+                        <div class="lecture-item"><span class="lecture-badge">L2</span><span>L2 - BT and DnC</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 10: Stacks -->
+            <div class="section" id="stacks">
+                <div class="section-header" onclick="toggleSection(this)" aria-expanded="false">
+                    <div class="section-title">
+                        <span class="section-number">10</span>
+                        <span>Stacks [Live Lectures]</span>
+                    </div>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="section-content" aria-hidden="true">
+                    <div class="content-inner">
+                        <div class="lecture-item"><span class="lecture-badge mega">MS</span><span>MS - Stacks</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 11: Queues -->
+            <div class="section" id="queues">
+                <div class="section-header" onclick="toggleSection(this)" aria-expanded="false">
+                    <div class="section-title">
+                        <span class="section-number">11</span>
+                        <span>Queues [Live Lectures]</span>
+                    </div>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="section-content" aria-hidden="true">
+                    <div class="content-inner">
+                        <div class="lecture-item"><span class="lecture-badge">L1</span><span>L1 - Queues</span></div>
+                        <div class="lecture-item"><span class="lecture-badge">L2</span><span>L2 - Queues</span></div>
+                        <div class="lecture-item"><span class="lecture-badge">L3</span><span>L3 - Queues</span></div>
+                        <div class="lecture-item"><span class="lecture-badge debug">DS</span><span>DS - Queue</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 12: Generic/Binary Trees -->
+            <div class="section" id="trees">
+                <div class="section-header" onclick="toggleSection(this)" aria-expanded="false">
+                    <div class="section-title">
+                        <span class="section-number">12</span>
+                        <span>Generic or Binary Trees [Live Lectures]</span>
+                    </div>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="section-content" aria-hidden="true">
+                    <div class="content-inner">
+                        <div class="lecture-item"><span class="lecture-badge">L1</span><span>L1 - Trees</span></div>
+                        <div class="lecture-item"><span class="lecture-badge">L2</span><span>L2 - Trees</span></div>
+                        <div class="lecture-item"><span class="lecture-badge">L3</span><span>L3 - Trees</span></div>
+                        <div class="lecture-item"><span class="lecture-badge debug">DS</span><span>DS - Trees</span></div>
+                        <div class="lecture-item"><span class="lecture-badge mega">MS</span><span>MS - Trees</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 13: Binary Search Trees -->
+            <div class="section" id="bst">
+                <div class="section-header" onclick="toggleSection(this)" aria-expanded="false">
+                    <div class="section-title">
+                        <span class="section-number">13</span>
+                        <span>Binary Search Trees [Live Lectures]</span>
+                    </div>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="section-content" aria-hidden="true">
+                    <div class="content-inner">
+                        <div class="lecture-item"><span class="lecture-badge">L1</span><span>L1 - BST</span></div>
+                        <div class="lecture-item"><span class="lecture-badge">L2</span><span>L2 - BST</span></div>
+                        <div class="lecture-item"><span class="lecture-badge">L3</span><span>L3 - BST</span></div>
+                        <div class="lecture-item"><span class="lecture-badge debug">DS</span><span>DS - BST</span></div>
+                        <div class="lecture-item"><span class="lecture-badge mega">MS</span><span>MS - BST</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 14: Dynamic Programming -->
+            <div class="section" id="dp">
+                <div class="section-header" onclick="toggleSection(this)" aria-expanded="false">
+                    <div class="section-title">
+                        <span class="section-number">14</span>
+                        <span>Dynamic Programming [Live Lectures]</span>
+                    </div>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="section-content" aria-hidden="true">
+                    <div class="content-inner">
+                        <div class="lecture-item"><span class="lecture-badge mega">MS</span><span>MS - DP</span></div>
+                        <div class="lecture-item"><span class="lecture-badge">L1</span><span>L1 - DP</span></div>
+                        <div class="lecture-item"><span class="lecture-badge">L2</span><span>L2 - DP</span></div>
+                        <div class="lecture-item"><span class="lecture-badge">L3</span><span>L3 - DP</span></div>
+                        <div class="lecture-item"><span class="lecture-badge">L4</span><span>L4 - DP</span></div>
+                        <div class="lecture-item"><span class="lecture-badge debug">DS</span><span>DS - DP L1</span></div>
+                        <div class="lecture-item"><span class="lecture-badge debug">DS</span><span>DS - DP L2</span></div>
+                        <div class="lecture-item"><span class="lecture-badge mega">MS</span><span>MS - DP</span></div>
+                        <div class="key-topics">
+                            <h4>📚 Key Topics Covered:</h4>
+                            <ul>
+                                <li>Memoization vs Tabulation</li>
+                                <li>Common DP patterns (Knapsack, LIS, Partition)</li>
+                                <li>Optimization techniques & state reduction</li>
+                                <li>Complexity trade-offs and problem decomposition</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 15: Graphs -->
+            <div class="section" id="graphs">
+                <div class="section-header" onclick="toggleSection(this)" aria-expanded="false">
+                    <div class="section-title">
+                        <span class="section-number">15</span>
+                        <span>Graphs [Live Lectures]</span>
+                    </div>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="section-content" aria-hidden="true">
+                    <div class="content-inner">
+                        <div class="lecture-item"><span class="lecture-badge">L1</span><span>L1 - Graphs</span></div>
+                        <div class="lecture-item"><span class="lecture-badge">L2</span><span>L2 - Graphs</span></div>
+                        <div class="lecture-item"><span class="lecture-badge">L3</span><span>L3 - Graphs</span></div>
+                        <div class="lecture-item"><span class="lecture-badge">L8</span><span>L8 - Graphs</span></div>
+                        <div class="lecture-item"><span class="lecture-badge">L9</span><span>L9 - Graphs</span></div>
+                        <div class="lecture-item"><span class="lecture-badge debug">DS</span><span>DS - Graphs [Concepts]</span></div>
+                        <div class="lecture-item"><span class="lecture-badge">L11</span><span>L11 - Graphs</span></div>
+                        <div class="lecture-item"><span class="lecture-badge debug">DS</span><span>DS - Graphs - 2</span></div>
+                        <div class="lecture-item"><span class="lecture-badge mega">MS</span><span>MS - Graph</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 16: Heaps -->
+            <div class="section" id="heaps">
+                <div class="section-header" onclick="toggleSection(this)" aria-expanded="false">
+                    <div class="section-title">
+                        <span class="section-number">16</span>
+                        <span>Heaps [Live Lectures]</span>
+                    </div>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="section-content" aria-hidden="true">
+                    <div class="content-inner">
+                        <div class="lecture-item"><span class="lecture-badge">L1</span><span>L1 - Heaps</span></div>
+                        <div class="lecture-item"><span class="lecture-badge">L2</span><span>L2 - Heaps</span></div>
+                        <div class="lecture-item"><span class="lecture-badge">L3</span><span>L3 - Heaps</span></div>
+                        <div class="lecture-item"><span class="lecture-badge debug">DS</span><span>DS - Heap</span></div>
+                        <div class="lecture-item"><span class="lecture-badge mega">MS</span><span>MS - Heap</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 17: Tries & Maps -->
+            <div class="section" id="tries">
+                <div class="section-header" onclick="toggleSection(this)" aria-expanded="false">
+                    <div class="section-title">
+                        <span class="section-number">17</span>
+                        <span>Tries & Maps [Live Lectures]</span>
+                    </div>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="section-content" aria-hidden="true">
+                    <div class="content-inner">
+                        <div class="lecture-item"><span class="lecture-badge">L2</span><span>L2 - Maps n Tries</span></div>
+                        <div class="lecture-item"><span class="lecture-badge">L3</span><span>L3 - Maps n Tries</span></div>
+                        <div class="lecture-item"><span class="lecture-badge debug">DS</span><span>DS - Maps n Tries</span></div>
+                        <div class="lecture-item"><span class="lecture-badge mega">MS</span><span>MS - Maps n Tries</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 18: Miscellaneous -->
+            <div class="section" id="misc">
+                <div class="section-header" onclick="toggleSection(this)" aria-expanded="false">
+                    <div class="section-title">
+                        <span class="section-number">18</span>
+                        <span>Miscellaneous [LIVE Sessions]</span>
+                    </div>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="section-content" aria-hidden="true">
+                    <div class="content-inner">
+                        <div class="lecture-item"><span class="lecture-badge mega">MS</span><span>The LAST LIVE Class</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- End of sections -->
+        </div>
+    </div>
+
+    <script>
+        /**
+         * Toggle a section open/closed with smooth height animation.
+         * Includes basic validation, localStorage persistence, and ARIA updates.
+         * @param {HTMLElement} headerEl - The clickable header element of a section.
+         */
+        function toggleSection(headerEl) {
+            if (!(headerEl instanceof HTMLElement)) return;
+            var section = headerEl.parentElement;
+            if (!section) return;
+            var content = section.querySelector('.section-content');
+            var arrow = headerEl.querySelector('.arrow');
+            if (!content || !arrow) return;
+            var sections = document.querySelectorAll('.section');
+            var index = Array.prototype.indexOf.call(sections, section);
+
+            var isOpen = content.classList.contains('active');
+
+            if (isOpen) {
+                // Close: set current height for transition, then collapse
+                content.style.maxHeight = content.scrollHeight + 'px';
+                void content.offsetHeight; // force reflow
+                content.style.maxHeight = null;
+                content.classList.remove('active');
+                headerEl.classList.remove('active');
+                arrow.classList.remove('active');
+                headerEl.setAttribute('aria-expanded', 'false');
+                content.setAttribute('aria-hidden', 'true');
+                try { localStorage.removeItem('open-section-' + index); } catch (e) { /* storage unavailable */ }
+            } else {
+                // Open: expand and persist
+                content.classList.add('active');
+                headerEl.classList.add('active');
+                arrow.classList.add('active');
+                content.style.maxHeight = content.scrollHeight + 'px';
+                headerEl.setAttribute('aria-expanded', 'true');
+                content.setAttribute('aria-hidden', 'false');
+                try { localStorage.setItem('open-section-' + index, '1'); } catch (e) { /* storage unavailable */ }
+            }
+
+            updateProgress();
+        }
+
+        /**
+         * Update progress bar to reflect number of open sections.
+         */
+        function updateProgress() {
+            var total = document.querySelectorAll('.section').length;
+            var open = document.querySelectorAll('.section-content.active').length;
+            var pct = total ? Math.round((open / total) * 100) : 0;
+            var bar = document.getElementById('progressBar');
+            if (bar) bar.style.width = pct + '%';
+        }
+
+        // Initialize persisted open sections on load
+        document.addEventListener('DOMContentLoaded', function () {
+            var sections = document.querySelectorAll('.section');
+            sections.forEach(function (sec, idx) {
+                try {
+                    if (localStorage.getItem('open-section-' + idx)) {
+                        var header = sec.querySelector('.section-header');
+                        var content = sec.querySelector('.section-content');
+                        var arrow = header && header.querySelector('.arrow');
+                        if (header && content && arrow) {
+                            content.classList.add('active');
+                            header.classList.add('active');
+                            arrow.classList.add('active');
+                            header.setAttribute('aria-expanded', 'true');
+                            content.setAttribute('aria-hidden', 'false');
+                            requestAnimationFrame(function () {
+                                content.style.maxHeight = content.scrollHeight + 'px';
+                            });
+                        }
+                    }
+                } catch (e) {
+                    // storage not available, skip persistence
+                }
+            });
+
+            updateProgress();
+
+            // Recompute open heights on resize for accurate heights
+            window.addEventListener('resize', function () {
+                document.querySelectorAll('.section-content.active').forEach(function (c) {
+                    c.style.maxHeight = c.scrollHeight + 'px';
+                });
+            });
+
+            // Smooth scroll for toc nav
+            document.querySelectorAll('.toc-nav a').forEach(function (a) {
+                a.addEventListener('click', function (evt) {
+                    evt.preventDefault();
+                    var id = a.getAttribute('href');
+                    var target = id ? document.querySelector(id) : null;
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
