@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Topic — DSA</title>
+    <meta name="description" content="Detailed topic page for DSA Supreme Batch" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --bg: #f7f9fc; --text: #2C3E50; --muted: #6b7280; --accent: #3498DB; --card: #ffffff; --border: #e5e7eb;
+      }
+      body { margin: 0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); }
+      .wrap { max-width: 960px; margin: 0 auto; padding: 20px; }
+      .header { display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: center; }
+      h1 { font-family: Poppins, Inter; margin: 0 0 8px; }
+      .badge { background: var(--accent); color: #fff; padding: 4px 10px; border-radius: 999px; font-weight: 600; font-size: 12px; }
+      .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin: 12px 0; }
+      .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+      .grid-2 > div { min-width: 0; }
+      iframe.video { width: 100%; min-height: 300px; border: none; border-radius: 8px; }
+      .links { display: flex; flex-wrap: wrap; gap: 8px; }
+      .btn { padding: 8px 12px; border-radius: 8px; border: 1px solid var(--border); background: var(--card); color: var(--text); text-decoration: none; display: inline-block; }
+      .btn.primary { background: var(--accent); color: white; border-color: transparent; }
+      .muted { color: var(--muted); }
+      ul { margin: 8px 0; }
+      @media (max-width: 768px) { .grid-2 { grid-template-columns: 1fr; } }
+    </style>
+    <script type="module">
+      // Robust topic loader with validation and error handling
+      import { TOPICS } from './topics-data.js';
+
+      /**
+       * Get URL param safely
+       * @param {string} key
+       * @returns {string | null}
+       */
+      const getParam = (key) => {
+        try {
+          const url = new URL(window.location.href);
+          const val = url.searchParams.get(key);
+          return (val && typeof val === 'string') ? val.trim() : null;
+        } catch (e) {
+          console.error('URL parsing failed', e);
+          return null;
+        }
+      };
+
+      /**
+       * Safely set text content
+       * @param {HTMLElement} el
+       * @param {string} text
+       */
+      const setText = (el, text) => { el.textContent = String(text || '').slice(0, 5000); };
+
+      /** Render topic into the DOM */
+      const render = () => {
+        const slug = getParam('topic');
+        const errorBox = document.getElementById('error');
+        if (!slug) {
+          errorBox.hidden = false;
+          setText(errorBox, 'Missing topic parameter.');
+          return;
+        }
+
+        const topic = TOPICS.find(t => t.slug === slug);
+        if (!topic) {
+          errorBox.hidden = false;
+          setText(errorBox, `Unknown topic: ${slug}`);
+          return;
+        }
+
+        // Populate UI
+        document.title = `${topic.title} — DSA`;
+        setText(document.getElementById('title'), topic.title);
+        setText(document.getElementById('category'), topic.category);
+        setText(document.getElementById('description'), topic.description || '');
+
+        const video = document.getElementById('video');
+        if (topic.youtubeUrl && topic.youtubeUrl.startsWith('https://')) {
+          video.src = topic.youtubeUrl;
+        } else {
+          video.hidden = true;
+        }
+
+        const pdfLink = document.getElementById('pdfLink');
+        const docLink = document.getElementById('docLink');
+        if (topic.pdfUrl && topic.pdfUrl !== '#') {
+          pdfLink.href = topic.pdfUrl;
+        } else {
+          pdfLink.href = '#';
+          pdfLink.addEventListener('click', (e) => { e.preventDefault(); alert('PDF coming soon'); });
+        }
+        if (topic.googleDocUrl && topic.googleDocUrl.startsWith('http')) {
+          docLink.href = topic.googleDocUrl;
+        } else {
+          docLink.href = '#';
+          docLink.addEventListener('click', (e) => { e.preventDefault(); alert('Google Doc coming soon'); });
+        }
+
+        const notesList = document.getElementById('notes');
+        notesList.innerHTML = '';
+        (topic.notes || []).forEach(n => {
+          const li = document.createElement('li');
+          setText(li, n);
+          notesList.appendChild(li);
+        });
+      };
+
+      // Performance: defer render to next tick to avoid blocking layout
+      window.addEventListener('DOMContentLoaded', () => setTimeout(render, 0));
+    </script>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="header">
+        <div>
+          <h1 id="title">Topic Title</h1>
+          <span class="badge" id="category">Category</span>
+        </div>
+        <div class="links">
+          <a id="pdfLink" class="btn" href="#" target="_blank" rel="noopener">Open PDF</a>
+          <a id="docLink" class="btn" href="#" target="_blank" rel="noopener">Google Doc</a>
+          <a class="btn" href="../index.html" target="_top" rel="noopener">Back to Index</a>
+        </div>
+      </div>
+
+      <div id="error" class="card" hidden></div>
+
+      <div class="card">
+        <p class="muted" id="description">Loading description...</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>YouTube Video</h3>
+          <iframe id="video" class="video" allowfullscreen title="YouTube Video"></iframe>
+        </div>
+        <div class="card">
+          <h3>Notes</h3>
+          <ul id="notes">
+            <li>Key concepts will appear here.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

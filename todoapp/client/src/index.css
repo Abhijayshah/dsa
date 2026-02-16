@@ -1,9 +1,0 @@
-body { font-family: Arial, sans-serif; background: #f7f7f7; margin: 0; padding: 20px; }
-.app { max-width: 640px; margin: 0 auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 14px rgba(0,0,0,0.06);} 
-.form { display:flex; gap:8px; margin-bottom:12px; }
-.form input { flex:1; padding:8px; }
-.form button { padding:8px 12px }
-.todos { list-style:none; padding:0; margin:0 }
-.todos li { display:flex; justify-content:space-between; padding:8px 4px; border-bottom:1px solid #eee }
-.todos li.done span { text-decoration:line-through; color: #888 }
-.todos li span { cursor:pointer }

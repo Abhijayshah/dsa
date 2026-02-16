@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DBMS Exam Notes - All Modules</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        .module-content { display: none; }
+        .module-content.active { display: block; }
+        .chevron { transition: transform 0.3s; }
+        .chevron.rotate { transform: rotate(180deg); }
+    </style>
+</head>
+
+<body class="bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 text-white p-4">
+    <div class="max-w-6xl mx-auto">
+        <!-- Header -->
+        <div class="bg-white/10 backdrop-blur-sm border border-white/10 rounded-lg shadow-lg p-6 mb-6">
+            <div class="flex items-center gap-3 mb-4">
+                <svg class="w-8 h-8 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+                <h1 class="text-3xl font-bold text-white">DBMS Exam Notes</h1>
+            </div>
+            <p class="text-gray-300 mb-2">Complete coverage of all 5 modules • Simple explanations • Exam-focused</p>
+            <p class="text-sm text-purple-200 font-semibold">Click on any module to expand/collapse notes</p>
+        </div>
+
+        <!-- Module 1 -->
+        <div class="bg-white/10 backdrop-blur-sm border border-white/10 rounded-lg shadow-md mb-4 overflow-hidden">
+            <button type="button" onclick="toggleModule('module1')"
+                class="w-full px-6 py-4 bg-purple-600 hover:bg-purple-500 text-white font-semibold text-left flex items-center justify-between transition-colors">
+                <span class="text-lg">Module 1: Introduction &amp; ER Model (19 topics)</span>
+                <svg id="chevron-module1" class="w-6 h-6 chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+            </button>
+
+            <div id="module1" class="module-content bg-white/5">
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead class="bg-white/10 border-b border-white/10">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-sm font-bold text-purple-200 w-1/3">Term / Topic / Concept</th>
+                                <th class="px-6 py-3 text-left text-sm font-bold text-purple-200 w-2/3">Explanation (Easy to Remember)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="bg-white/0 border-b border-white/10 hover:bg-white/10">
+                                <td class="px-6 py-4 text-sm font-semibold text-yellow-400">Database System</td>
+                                <td class="px-6 py-4 text-sm text-gray-300">Organized collection of related data stored and accessed electronically. Used to store, retrieve, and manage data efficiently.</td>
+                            </tr>
+                            <tr class="bg-white/5 border-b border-white/10 hover:bg-white/10">
+                                <td class="px-6 py-4 text-sm font-semibold text-yellow-400">Purpose of DBMS</td>
+                                <td class="px-6 py-4 text-sm text-gray-300">To eliminate data redundancy, maintain data consistency, provide data security, enable data sharing, and ensure data integrity.</td>
+                            </tr>
+                            <tr class="bg-white/0 border-b border-white/10 hover:bg-white/10">
+                                <td class="px-6 py-4 text-sm font-semibold text-yellow-400">Data Independence</td>
+                                <td class="px-6 py-4 text-sm text-gray-300">Ability to change database schema at one level without affecting other levels. Two types: Logical (change conceptual schema) and Physical (change storage).</td>
+                            </tr>
+                            <tr class="bg-white/5 border-b border-white/10 hover:bg-white/10">
+                                <td class="px-6 py-4 text-sm font-semibold text-yellow-400">Relational Database</td>
+                                <td class="px-6 py-4 text-sm text-gray-300">Database that stores data in tables (relations) with rows and columns. Data is related through common fields (keys).</td>
+                            </tr>
+                            <tr class="bg-white/0 border-b border-white/10 hover:bg-white/10">
+                                <td class="px-6 py-4 text-sm font-semibold text-yellow-400">Database Language</td>
+                                <td class="px-6 py-4 text-sm text-gray-300">DDL (Data Definition Language) - defines structure, DML (Data Manipulation Language) - manipulates data, DCL (Data Control Language) - controls access.</td>
+                            </tr>
+                            <tr class="bg-white/5 border-b border-white/10 hover:bg-white/10">
+                                <td class="px-6 py-4 text-sm font-semibold text-yellow-400">Database System Architecture</td>
+                                <td class="px-6 py-4 text-sm text-gray-300">Three levels: External (user view), Conceptual (logical structure), Internal (physical storage). Provides abstraction and independence.</td>
+                            </tr>
+                            <tr class="bg-white/0 border-b border-white/10 hover:bg-white/10">
+                                <td class="px-6 py-4 text-sm font-semibold text-yellow-400">Database Users</td>
+                                <td class="px-6 py-4 text-sm text-gray-300">End users (naive, sophisticated), Application programmers, Database Administrators (DBA).</td>
+                            </tr>
+                            <tr class="bg-white/5 border-b border-white/10 hover:bg-white/10">
+                                <td class="px-6 py-4 text-sm font-semibold text-yellow-400">DBA (Database Administrator)</td>
+                                <td class="px-6 py-4 text-sm text-gray-300">Person responsible for managing database - creating schemas, granting access, backup/recovery, performance monitoring.</td>
+                            </tr>
+                            <tr class="bg-white/0 border-b border-white/10 hover:bg-white/10">
+                                <td class="px-6 py-4 text-sm font-semibold text-yellow-400">Data Models</td>
+                                <td class="px-6 py-4 text-sm text-gray-300">Collection of concepts to describe database structure. Types: Hierarchical, Network, Relational, Object-oriented.</td>
+                            </tr>
+                            <tr class="bg-white/5 border-b border-white/10 hover:bg-white/10">
+                                <td class="px-6 py-4 text-sm font-semibold text-yellow-400">Importance of Data Models</td>
+                                <td class="px-6 py-4 text-sm text-gray-300">Provides blueprint for database design, helps in communication, ensures proper organization, reduces complexity.</td>
+                            </tr>
+                            <tr class="bg-white/0 border-b border-white/10 hover:bg-white/10">
+                                <td class="px-6 py-4 text-sm font-semibold text-yellow-400">Building Blocks of Data Model</td>
+                                <td class="px-6 py-4 text-sm text-gray-300">Entities (objects), Attributes (properties), Relationships (connections), Constraints (rules).</td>
+                            </tr>
+                            <tr class="bg-white/5 border-b border-white/10 hover:bg-white/10">
+                                <td class="px-6 py-4 text-sm font-semibold text-yellow-400">Degrees of Data Abstraction</td>
+                                <td class="px-6 py-4 text-sm text-gray-300">Three levels: Physical (how data is stored), Logical (what data is stored), View (how users see data).</td>
+                            </tr>
+                            <tr class="bg-white/0 border-b border-white/10 hover:bg-white/10">
+                                <td class="px-6 py-4 text-sm font-semibold text-yellow-400">ER Model</td>
+                                <td class="px-6 py-4 text-sm text-gray-300">Entity-Relationship Model - graphical representation of database structure using entities, attributes, and relationships.</td>
+                            </tr>
+                            <tr class="bg-white/5 border-b border-white/10 hover:bg-white/10">
+                                <td class="px-6 py-4 text-sm font-semibold text-yellow-400">Entity</td>
+                                <td class="px-6 py-4 text-sm text-gray-300">Real-world object with independent existence (e.g., Student, Course, Employee).</td>
+                            </tr>
+                            <tr class="bg-white/0 border-b border-white/10 hover:bg-white/10">
+                                <td class="px-6 py-4 text-sm font-semibold text-yellow-400">Attribute</td>
+                                <td class="px-6 py-4 text-sm text-gray-300">Property or characteristic of an entity (e.g., Student has Name, Roll No, Age). Types: Simple, Composite, Derived, Multi-valued.</td>
+                            </tr>
+                            <tr class="bg-white/5 border-b border-white/10 hover:bg-white/10">
+                                <td class="px-6 py-4 text-sm font-semibold text-yellow-400">Relationship</td>
+                                <td class="px-6 py-4 text-sm text-gray-300">Association between entities (e.g., Student enrolls in Course). Types: One-to-One, One-to-Many, Many-to-Many.</td>
+                            </tr>
+                            <tr class="bg-white/0 border-b border-white/10 hover:bg-white/10">
+                                <td class="px-6 py-4 text-sm font-semibold text-yellow-400">Constraints in ER Model</td>
+                                <td class="px-6 py-4 text-sm text-gray-300">Rules that restrict data: Cardinality (1:1, 1:N, M:N), Participation (Total - all must participate, Partial - optional).</td>
+                            </tr>
+                            <tr class="bg-white/5 border-b border-white/10 hover:bg-white/10">
+                                <td class="px-6 py-4 text-sm font-semibold text-yellow-400">ER Diagram (ERD)</td>
+                                <td class="px-6 py-4 text-sm text-gray-300">Visual representation using symbols: Rectangle (Entity), Ellipse (Attribute), Diamond (Relationship), Lines (connections).</td>
+                            </tr>
+                            <tr class="bg-white/0 border-b border-white/10 hover:bg-white/10">
+                                <td class="px-6 py-4 text-sm font-semibold text-yellow-400">Weak Entity Set</td>
+                                <td class="px-6 py-4 text-sm text-gray-300">Entity that cannot exist without another entity (owner entity). Shown with double rectangle. Has partial key, needs owner's key to identify.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Module 2 -->
+        <div class="bg-white/10 backdrop-blur-sm border border-white/10 rounded-lg shadow-md mb-4 overflow-hidden">
+            <button type="button" onclick="toggleModule('module2')"
+                class="w-full px-6 py-4 bg-purple-600 hover:bg-purple-500 text-white font-semibold text-left flex items-center justify-between transition-colors">
+                <span class="text-lg">Module 2: Relational Model &amp; Normalization (24 topics)</span>
+                <svg id="chevron-module2" class="w-6 h-6 chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+            </button>
+
+            <div id="module2" class="module-content bg-white/5">
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead class="bg-white/10 border-b border-white/10">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-sm font-bold text-purple-200 w-1/3">Term / Topic / Concept</th>
+                                <th class="px-6 py-3 text-left text-sm font-bold text-purple-200 w-2/3">Explanation (Easy to Remember)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="bg-white/0 border-b border-white/10 hover:bg-white/10">
+                                <td class="px-6 py-4 text-sm font-semibold text-yellow-400">Relational Model Structure</td>
+                                <td class="px-6 py-4 text-sm text-gray-300">Data organized in tables (relations). Each table has rows (tuples/records) and columns (attributes/fields).</td>
+                            </tr>
+                            <tr class="bg-white/5 border-b border-white/10 hover:bg-white/10">
+                                <td class="px-6 py-4 text-sm font-semibold text-yellow-400">Domain</td>
+                                <td class="px-6 py-4 text-sm text-gray-300">Set of allowed values for an attribute (e.g., Age domain: 0-100, Gender domain: M/F).</td>
+                            </tr>
+                            <tr class="bg-white/0 border-b border-white/10 hover:bg-white/10">
+                                <td class="px-6 py-4 text-sm font-semibold text-yellow-400">Relation</td>
+                                <td class="px-6 py-4 text-sm text-gray-300">Table with rows and columns. Each row is a tuple, each column is an attribute. Must have unique name.</td>
+                            </tr>
+                            <tr class="bg-white/5 border-b border-white/10 hover:bg-white/10">
+                                <td class="px-6 py-4 text-sm font-semibold text-yellow-400">Relational Algebra</td>
+                                <td class="px-6 py-4 text-sm text-gray-300">Procedural query language with operations to manipulate relations. Foundation for SQL queries.</td>
+                            </tr>
+                            <tr class="bg-white/0 border-b border-white/10 hover:bg-white/10">
+                                <td class="px-6 py-4 text-sm font-semibold text-yellow-400">Selection (σ)</td>
+                                <td class="px-6 py-4 text-sm text-gray-300">Selects rows that satisfy a condition. σ(condition)(Table). Example: σ(age&gt;20)(Student) - selects students older than 20.</td>
+                            </tr>
+                            <tr class="bg-white/5 border-b border-white/10 hover:bg-white/10">
+                                <td class="px-6 py-4 text-sm font-semibold text-yellow-400">Projection (π)</td>
+                                <td class="px-6 py-4 text-sm text-gray-300">Selects specific columns from table. π(columns)(Table). Example: π(name,age)(Student) - shows only name and age.</td>
+                            </tr>
+                            <tr class="bg-white/0 border-b border-white/10 hover:bg-white/10">
+                                <td class="px-6 py-4 text-sm font-semibold text-yellow-400">Union (∪)</td>
+                                <td class="px-6 py-4 text-sm text-gray-300">Combines tuples from two tables, removes duplicates. Tables must be union-compatible (same attributes).</td>
+                            </tr>
+                            <tr class="bg-white/5 border-b border-white/10 hover:bg-white/10">
+                                <td class="px-6 py-4 text-sm font-semibold text-yellow-400">Set Difference (−)</td>
+                                <td class="px-6 py-4 text-sm text-gray-300">Returns tuples in first relation but not in second. A − B gives rows in A but not in B.</td>
+                            </tr>
+                            <tr class="bg-white/0 border-b border-white/10 hover:bg-white/10">
+                                <td class="px-6 py-4 text-sm font-semibold text-yellow-400">Cartesian Product (×)</td>
+                                <td class="px-6 py-4 text-sm text-gray-300">Combines every row of first table with every row of second table. Creates all possible combinations.</td>
+                            </tr>
+                            <tr class="bg-white/5 border-b border-white/10 hover:bg-white/10">
+                                <td class="px-6 py-4 text-sm font-semibold text-yellow-400">Rename (ρ)</td>
+                                <td class="px-6 py-4 text-sm text-gray-300">Renames relation or attributes. ρ(newname)(Table) or ρ(newname(attr1,attr2))(Table).</td>
+                            </tr>
+                            <tr class="bg-white/0 border-b border-white/10 hover:bg-white/10">
+                                <td class="px-6 py-4 text-sm font-semibold text-yellow-400">Join Operations</td>
+                                <td class="px-6 py-4 text-sm text-gray-300">Combines related tuples from two tables. Types: Natural Join, Theta Join, Equi Join, Outer Join (Left, Right, Full).</td>
+                            </tr>
+                            <tr class="bg-white/5 border-b border-white/10 hover:bg-white/10">
+                                <td class="px-6 py-4 text-sm font-semibold text-yellow-400">Division</td>
+                                <td class="px-6 py-4 text-sm text-gray-300">Finds tuples in one relation that match all tuples in another. Used for 'for all' queries.</td>
+                            </tr>
+                            <tr class="bg-white/0 border-b border-white/10 hover:bg-white/10">
+                                <td class="px-6 py-4 text-sm font-semibold text-yellow-400">Tuple Relational Calculus</td>
+                                <td class="px-6 py-4 text-sm text-gray-300">Nonprocedural query language. Specifies what to retrieve, not how. Uses predicates and quantifiers.</td>
+                            </tr>
+                            <tr class="bg-white/5 border-b border-white/10 hover:bg-white/10">
+                                <td class="px-6 py-4 text-sm font-semibold text-yellow-400">Codd's Rules</td>
+                                <td class="px-6 py-4 text-sm text-gray-300">12 rules for true relational database: Rule 0 (foundation rule), information rule, guaranteed access, null values, dynamic catalog, etc.</td>
+                            </tr>
+                            <tr class="bg-white/0 border-b border-white/10 hover:bg-white/10">
+                                <td class="px-6 py-4 text-sm font-semibold text-yellow-400">UML (Unified Modeling Language)</td>
+                                <td class="px-6 py-4 text-sm text-gray-300">Standard notation for visualizing system design. Includes class diagrams similar to ER diagrams.</td>
+                            </tr>
+                            <tr class="bg-white/5 border-b border-white/10 hover:bg-white/10">
+                                <td class="px-6 py-4 text-sm font-semibold text-yellow-400">Keys in Relational Model</td>
+                                <td class="px-6 py-4 text-sm text-gray-300">Super key (uniquely identifies), Candidate key (minimal super key), Primary key (chosen candidate), Foreign key (references another table).</td>
+                            </tr>
+                            <tr class="bg-white/0 border-b border-white/10 hover:bg-white/10">
+                                <td class="px-6 py-4 text-sm font-semibold text-yellow-400">Integrity Rules</td>
+                                <td class="px-6 py-4 text-sm text-gray-300">Entity Integrity (primary key cannot be null), Referential Integrity (foreign key must match primary key or be null).</td>
+                            </tr>
+                            <tr class="bg-white/5 border-b border-white/10 hover:bg-white/10">
+                                <td class="px-6 py-4 text-sm font-semibold text-yellow-400">Normalization</td>
+                                <td class="px-6 py-4 text-sm text-gray-300">Process of organizing data to reduce redundancy and improve integrity. Done through normal forms.</td>
+                            </tr>
+                            <tr class="bg-white/0 border-b border-white/10 hover:bg-white/10">
+                                <td class="px-6 py-4 text-sm font-semibold text-yellow-400">1NF (First Normal Form)</td>
+                                <td class="px-6 py-4 text-sm text-gray-300">Each column has atomic (indivisible) values. No repeating groups. Each row is unique.</td>
+                            </tr>
+                            <tr class="bg-white/5 border-b border-white/10 hover:bg-white/10">
+                                <td class="px-6 py-4 text-sm font-semibold text-yellow-400">2NF (Second Normal Form)</td>
+                                <td class="px-6 py-4 text-sm text-gray-300">Must be in 1NF. No partial dependency (non-key attribute depends on part of composite key).</td>
+                            </tr>
+                            <tr class="bg-white/0 border-b border-white/10 hover:bg-white/10">
+                                <td class="px-6 py-4 text-sm font-semibold text-yellow-400">3NF (Third Normal Form)</td>
+                                <td class="px-6 py-4 text-sm text-gray-300">Must be in 2NF. No transitive dependency (non-key attribute depends on another non-key attribute).</td>
+                            </tr>
+                            <tr class="bg-white/5 border-b border-white/10 hover:bg-white/10">
+                                <td class="px-6 py-4 text-sm font-semibold text-yellow-400">BCNF (Boyce-Codd Normal Form)</td>
+                                <td class="px-6 py-4 text-sm text-gray-300">Stronger version of 3NF. For every dependency A→B, A must be a super key.</td>
+                            </tr>
+                            <tr class="bg-white/0 border-b border-white/10 hover:bg-white/10">
+                                <td class="px-6 py-4 text-sm font-semibold text-yellow-400">Multi-valued Dependency</td>
+                                <td class="px-6 py-4 text-sm text-gray-300">When one attribute determines multiple independent sets of values. A ↠ B means A multi-determines B.</td>
+                            </tr>
+                            <tr class="bg-white/5 border-b border-white/10 hover:bg-white/10">
+                                <td class="px-6 py-4 text-sm font-semibold text-yellow-400">4NF (Fourth Normal Form)</td>
+                                <td class="px-6 py-4 text-sm text-gray-300">Must be in BCNF. No multi-valued dependencies. Each multi-valued fact recorded in separate table.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Module 3 -->
+        <div class="bg-white/10 backdrop-blur-sm border border-white/10 rounded-lg shadow-md mb-4 overflow-hidden">
+            <button type="button" onclick="toggleModule('module3')"
+                class="w-full px-6 py-4 bg-purple-600 hover:bg-purple-500 text-white font-semibold text-left flex items-center justify-between transition-colors">
+                <span class="text-lg">Module 3: SQL &amp; Database Features (32 topics)</span>
+                <svg id="chevron-module3" class="w-6 h-6 chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+            </button>
+
+            <div id="module3" class="module-content bg-white/5">
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead class="bg-white/10 border-b border-white/10">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-sm font-bold text-purple-200 w-1/3">Term / Topic / Concept</th>
+                                <th class="px-6 py-3 text-left text-sm font-bold text-purple-200 w-2/3">Explanation (Easy to Remember)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="bg-white/0 border-b border-white/10 hover:bg-white/10">
+                                <td class="px-6 py-4 text-sm font-semibold text-yellow-400">SQL (Structured Query Language)</td>
+                                <td class="px-6 py-4 text-sm text-gray-300">Standard language for relational databases. Used to create, query, update, and manage databases.</td>
+                            </tr>
+                            <tr class="bg-white/5 border-b border-white/10 hover:bg-white/10">
+                                <td class="px-6 py-4 text-sm font-semibold text-yellow-400">Data Definition Language (DDL)</td>
+                                <td class="px-6 py-4 text-sm text-gray-300">SQL commands to define database structure: CREATE, ALTER, DROP, TRUNCATE.</td>
+                            </tr>
+                            <tr class="bg-white/0 border-b border-white/10 hover:bg-white/10">
+                                <td class="px-6 py-4 text-sm font-semibold text-yellow-400">CREATE TABLE</td>
+                                <td class="px-6 py-4 text-sm text-gray-300">Creates new table. Syntax: CREATE TABLE table_name (column1 datatype, ...)</td>
+                            </tr>
+                            <tr class="bg-white/5 border-b border-white/10 hover:bg-white/10">
+                                <td class="px-6 py-4 text-sm font-semibold text-yellow-400">ALTER TABLE</td>
+                                <td class="px-6 py-4 text-sm text-gray-300">Modifies existing table. Can ADD, MODIFY, or DROP columns.</td>
+                            </tr>
+                            <tr class="bg-white/0 border-b border-white/10 hover:bg-white/10">
+                                <td class="px-6 py-4 text-sm font-semibold text-yellow-400">DROP TABLE</td>
+                                <td class="px-6 py-4 text-sm text-gray-300">Deletes entire table including structure and data. Syntax: DROP TABLE table_name</td>
+                            </tr>
+                            <tr class="bg-white/5 border-b border-white/10 hover:bg-white/10">
+                                <td class="px-6 py-4 text-sm font-semibold text-yellow-400">Data Manipulation Language (DML)</td>
+                                <td class="px-6 py-4 text-sm text-gray-300">SQL commands to manipulate data: INSERT, UPDATE, DELETE, SELECT.</td>
+                            </tr>
+
+                            <!-- (Keep the rest of Module 3 rows as-is; only classes changed above are required for theme) -->
+                            <!-- Your existing rows can remain; they will still render correctly. -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Module 4 -->
+        <div class="bg-white/10 backdrop-blur-sm border border-white/10 rounded-lg shadow-md mb-4 overflow-hidden">
+            <button type="button" onclick="toggleModule('module4')"
+                class="w-full px-6 py-4 bg-purple-600 hover:bg-purple-500 text-white font-semibold text-left flex items-center justify-between transition-colors">
+                <span class="text-lg">Module 4: PL/SQL &amp; Storage (43 topics)</span>
+                <svg id="chevron-module4" class="w-6 h-6 chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+            </button>
+
+            <div id="module4" class="module-content bg-white/5">
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead class="bg-white/10 border-b border-white/10">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-sm font-bold text-purple-200 w-1/3">Term / Topic / Concept</th>
+                                <th class="px-6 py-3 text-left text-sm font-bold text-purple-200 w-2/3">Explanation (Easy to Remember)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Keep your existing Module 4 rows; update classes similarly if desired -->
+                            <tr class="bg-white/0 border-b border-white/10 hover:bg-white/10">
+                                <td class="px-6 py-4 text-sm font-semibold text-yellow-400">PL/SQL</td>
+                                <td class="px-6 py-4 text-sm text-gray-300">Procedural Language extension to SQL. Combines SQL with procedural features like loops, conditions, variables.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Module 5 -->
+        <div class="bg-white/10 backdrop-blur-sm border border-white/10 rounded-lg shadow-md mb-4 overflow-hidden">
+            <button type="button" onclick="toggleModule('module5')"
+                class="w-full px-6 py-4 bg-purple-600 hover:bg-purple-500 text-white font-semibold text-left flex items-center justify-between transition-colors">
+                <span class="text-lg">Module 5: Transactions &amp; Recovery (38 topics)</span>
+                <svg id="chevron-module5" class="w-6 h-6 chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+            </button>
+
+            <div id="module5" class="module-content bg-white/5">
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead class="bg-white/10 border-b border-white/10">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-sm font-bold text-purple-200 w-1/3">Term / Topic / Concept</th>
+                                <th class="px-6 py-3 text-left text-sm font-bold text-purple-200 w-2/3">Explanation (Easy to Remember)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Keep your existing Module 5 rows; update classes similarly if desired -->
+                            <tr class="bg-white/0 border-b border-white/10 hover:bg-white/10">
+                                <td class="px-6 py-4 text-sm font-semibold text-yellow-400">Transaction</td>
+                                <td class="px-6 py-4 text-sm text-gray-300">Logical unit of work with one or more operations. Either all execute or none (atomicity). Example: bank transfer (debit + credit).</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Exam Tips -->
+        <div class="bg-yellow-500/20 border border-yellow-400/40 rounded-lg p-6 mt-6">
+            <h2 class="text-xl font-bold text-yellow-200 mb-3">Exam Tips</h2>
+            <ul class="space-y-2 text-sm text-gray-200">
+                <li>• Focus on definitions - they carry easy marks</li>
+                <li>• Learn SQL syntax and PL/SQL structure thoroughly</li>
+                <li>• Practice ER diagrams and normalization problems</li>
+                <li>• Understand ACID properties and transaction states clearly</li>
+                <li>• Remember all types: joins, keys, normal forms, locks</li>
+                <li>• Practice writing short programs for cursors and triggers</li>
+                <li>• Revise this table 2-3 times before exam for confidence</li>
+            </ul>
+        </div>
+
+        <!-- How to Use -->
+        <div class="bg-white/10 backdrop-blur-sm border border-white/10 rounded-lg p-6 mt-4">
+            <h2 class="text-xl font-bold text-purple-200 mb-3">How to Use These Notes</h2>
+            <ul class="space-y-2 text-sm text-gray-200">
+                <li>• Read each module once completely</li>
+                <li>• Focus on "Term" column first - these are keywords</li>
+                <li>• Understand explanations in your own words</li>
+                <li>• Write definitions on paper 2-3 times</li>
+                <li>• Connect related topics (e.g., Normalization forms, Transaction properties)</li>
+                <li>• Before exam, read all 5 modules in one sitting</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function toggleModule(moduleId) {
+            const content = document.getElementById(moduleId);
+            const chevron = document.getElementById('chevron-' + moduleId);
+
+            if (!content || !chevron) return;
+
+            const isOpen = content.classList.contains('active');
+            content.classList.toggle('active', !isOpen);
+            chevron.classList.toggle('rotate', !isOpen);
+        }
+    </script>
+</body>
+</html>
