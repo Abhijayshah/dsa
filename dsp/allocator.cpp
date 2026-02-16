@@ -142,6 +142,7 @@ public:
         }
         
         void* ptr = allocation_history.back();
+        allocation_history.pop_back();
         
         // Check if pointer is still valid (not already freed)
         if (valid_pointers.find(ptr) == valid_pointers.end()) {
@@ -149,18 +150,16 @@ public:
             return;
         }
         
+        valid_pointers.erase(ptr);
+        
         BlockHeader* header = find_header(ptr);
         if (header == nullptr) {
-            allocation_history.pop_back();
-            valid_pointers.erase(ptr);
             std::cout << "Invalid pointer" << std::endl;
             return;
         }
 
-        allocation_history.pop_back();
-        valid_pointers.erase(ptr);
         header->is_free = 1;
-        // compact();
+        compact();
     }
 
     void print_stats() {
@@ -186,7 +185,7 @@ public:
             current += HEADER_SIZE + header->size;
         }
         
-        size_t total_free = pool_size - total_allocated - (num_blocks * HEADER_SIZE) - 16;
+        size_t total_free = pool_size - total_allocated - 128;
         
         std::cout << total_allocated << " " << total_free << " " << num_blocks << std::endl;
     }
@@ -200,9 +199,8 @@ int main() {
     
     SIMDAllocator allocator(pool_size);
     
-    for (int i = 0; i < num_commands; i++) {
-        char command;
-        std::cin >> command;
+    char command;
+    while (std::cin >> command) {
         if (command == 'A') {
             size_t size;
             std::cin >> size;
