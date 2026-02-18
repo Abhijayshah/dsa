@@ -1,10 +1,11 @@
-# DSA Codehelp RED SUPREME 4.0 — Notes & Learning Portal
+# DSA Codehelp RED SUPREME 4.0
+## My DSA Notes
 
 An organized, mobile-responsive site to learn Data Structures & Algorithms with clear explanations, flowcharts, code examples, videos, and PDFs. The left sidebar provides a structured Table of Contents; selecting any topic loads a detailed page on the right.
 
-**Live Site**: `https://abhijayshah.github.io/DSA-Codehelp-RED-SUPREME_4.0/`
+**Live Site**: https://abhijayshah.github.io/dsa/
 
-**Repository**: `https://github.com/Abhijayshah/DSA-Codehelp-RED-SUPREME_4.0`
+**Repository**: https://github.com/Abhijayshah/dsa
 
 ## Highlights
 - Dynamic right-side topic pages via `topics/template.html?topic=<slug>`
